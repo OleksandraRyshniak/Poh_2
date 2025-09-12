@@ -23,6 +23,6 @@ namespace Põh_2
             //    Person.Per();
             //    Osa4_Osa5_funktsioonid.LinkedList();
             //    Osa4_Osa5_funktsioonid.Dictionary();
-        }       
+        }
     }
 }
