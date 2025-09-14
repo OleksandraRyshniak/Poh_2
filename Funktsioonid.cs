@@ -8,11 +8,95 @@ namespace Põh_2
 {
     internal class Funktsioonid
     {
-        public static void Kalorite_kalkulaator()
+        public static void Maakond_linnad(string vastus, Dictionary<string,string> nimi)
         {
-
+            if (vastus=="maakond")
+            {
+                Console.WriteLine("Sisesta maakond: ");
+                string maakond = Console.ReadLine();
+                if (nimi.ContainsKey(maakond))
+                {
+                     Console.WriteLine(nimi[maakond]);
+                }
+                else
+                {
+                    Console.WriteLine("Lisame su linna ja maakonna");
+                    Console.Write("Sisesta maakond: ");
+                    string maakond1 = Console.ReadLine();
+                    Console.Write("Sisesta linn: ");
+                    string linn1 = Console.ReadLine();
+                    nimi.Add(maakond1, linn1);
+                    Console.WriteLine("Andmed on lisatud!");
+                }
+            }
+            else if (vastus=="linn")
+            {
+                Console.WriteLine("Sisesta linn: ");
+                string linn = Console.ReadLine();
+                if (nimi.ContainsValue(linn))
+                {
+                    foreach (var paar in nimi)
+                    {
+                        if (paar.Value == linn)
+                            Console.WriteLine(paar.Key);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Lisame su linna ja maakonna");
+                    Console.Write("Sisesta maakond: ");
+                    string maakond = Console.ReadLine();    
+                    Console.Write("Sisesta linn: ");
+                    string linn1 = Console.ReadLine();
+                    nimi.Add(maakond, linn1);
+                    Console.WriteLine("Andmed on lisatud!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Viga!");
+            }
+        }
+        public static void Mang(Dictionary<string, string> nimi)
+        {
+            Console.WriteLine("Kas sa tahad mängida mängu? (jah/ei)");
+            string vastus = Console.ReadLine().ToLower();
+            if (vastus == "jah")
+            {
+                Console.WriteLine("Ma kirjutan sulle mingi maakonna ja sina pead arvama, mis on selle maakonna pealinn.");
+                int oige = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    Random rand = new Random();
+                    int index = rand.Next(nimi.Count);
+                    var paar = nimi.ElementAt(index);
+                    Console.WriteLine($"Mis on {paar.Key} pealinn?");
+                    string vastus1 = Console.ReadLine();
+                    if (vastus1.ToLower() == paar.Value.ToLower())
+                    {
+                        Console.WriteLine("Õige vastus!");
+                        oige++;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Vale vastus! Õige vastus on {paar.Value}");
+                    }
+                }
+                float skoor = (float)oige / 3 * 100;
+                Console.WriteLine($"Sinu skoor on {skoor}.");
+                Console.WriteLine("Mäng läbi! Loodan, et sulle meeldis!");
+            }
+            else if (vastus == "ei")
+            {
+                Console.WriteLine("Okei, head päeva!");
+            }
+            else
+            {
+                Console.WriteLine("Palun vasta jah või ei!");
+            }
         }
     }
+    
     internal class Toode
     {
         public string Nimi;
@@ -27,7 +111,8 @@ namespace Põh_2
             try
             {
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Toode.txt");
-                using (StreamWriter writer = new StreamWriter(path, true))
+                using (StreamWriter writer = new StreamWriter(path, false)) ; // false = üle kirjutab faili
+                using (StreamWriter writer = new StreamWriter(path, true)) // true = lisab faili lõppu
                 {
                     for (int i = 0; i < 5; i++)
                     {
@@ -65,7 +150,7 @@ namespace Põh_2
             Kaal = kaal;
             Aktiivsustase = aktiivsus;
         }
-        public static void  SisestaAndmed()
+        public static void SisestaAndmed()
         {
             Console.Write("Sisesta nimi: ");
             string nimi = Console.ReadLine();
@@ -80,40 +165,41 @@ namespace Põh_2
             Console.Write("Sisesta aktiivsustase (madal/keskmine/suur): ");
             string aktiivsus = Console.ReadLine().ToLower();
             Inimene inimene = new Inimene(nimi, vanus, sugu, pikkus, kaal, aktiivsus);
-            if (inimene.Sugu != "naine" )
-            {
-                float bmr = 88.36f + (13.4f * kaal) + (4.8f * pikkus) - (5.7f * vanus);
-                Console.WriteLine($"Põhiainevahetus (BMR): {bmr} kcal/päevas");
-            }
-            else if (inimene.Sugu == "mees")
-            {
-                float bmr = 447.6f + (9.2f * kaal) + (3.1f * pikkus) - (4.3f * vanus);
-                Console.WriteLine($"Põhiainevahetus (BMR): {bmr} kcal/päevas");
-            }
+            float bmr;
+            if (inimene.Sugu == "mees")
+                bmr = 88.36f + (13.4f * kaal) + (4.8f * pikkus) - (5.7f * vanus);
+            else if (inimene.Sugu == "naine")
+                bmr = 447.6f + (9.2f * kaal) + (3.1f * pikkus) - (4.3f * vanus);
             else
             {
                 Console.WriteLine("Sisesta sugu õigesti!");
+                return;
             }
+            Console.WriteLine($"Põhiainevahetus (BMR): {bmr} kcal/päevas");
             Toode.SalvestaTootedFaili();
             List<string> toode_list = new List<string>();
             try
             {
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Toode.txt");
-                foreach (string rida in File.ReadAllLines(path))
-                {
-                    toode_list.Add(rida);
-                }
+                toode_list = File.ReadAllLines(path).ToList();
             }
             catch (Exception)
             {
                 Console.WriteLine("Viga failiga!");
             }
-            foreach (string toode in toode_list)
+            for (int i = 0; i < toode_list.Count; i++)
             {
-                Console.WriteLine(toode);
-            }
+                string[] osad = toode_list[i].Split(';');
+                string toodeNimi = osad[0];
+                float kalorid100g = float.Parse(osad[1]);
 
+                float kogusGrammides = bmr / kalorid100g * 100;
+                Console.WriteLine($"{i + 1}. {toodeNimi}: {kogusGrammides:F1} g");
+            }
         }
+
     }
+
+
 }
     

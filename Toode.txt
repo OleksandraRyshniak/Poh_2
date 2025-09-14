@@ -1,5 +1,5 @@
-﻿õun;23
-kurk;20
-porgand;40
-pitsa;285
-mahl;50
+fd;32
+df34;543
+fd;34
+dds;23
+ds;34
