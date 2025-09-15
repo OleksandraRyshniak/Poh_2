@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Põh_2
+namespace Põhikonstruktsioonid_2
 {
     internal class Person
     {

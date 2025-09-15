@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Põh_2
+namespace Põhikonstruktsioonid_2
 {
     internal class Iseseisev_too
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Põh_2
+namespace Põhikonstruktsioonid_2
 {
     internal class Iseseisev_funk
     {

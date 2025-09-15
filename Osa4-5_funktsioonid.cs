@@ -6,7 +6,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Põh_2
+namespace Põhikonstruktsioonid_2
 {
     internal class Osa4_Osa5_funktsioonid
     {
