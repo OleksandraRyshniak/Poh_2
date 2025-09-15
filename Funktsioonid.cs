@@ -111,8 +111,8 @@ namespace Põh_2
             try
             {
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Toode.txt");
-                using (StreamWriter writer = new StreamWriter(path, false)) ; // false = üle kirjutab faili
-                using (StreamWriter writer = new StreamWriter(path, true)) // true = lisab faili lõppu
+                using (StreamWriter writer = new StreamWriter(path, false)) ;
+                using (StreamWriter writer = new StreamWriter(path, true)) 
                 {
                     for (int i = 0; i < 5; i++)
                     {

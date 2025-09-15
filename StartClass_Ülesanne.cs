@@ -12,9 +12,9 @@ namespace Põh_2
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            //Console.WriteLine("1. Ülesanne");
-            //Console.WriteLine("Tere tulemast kalorite kalkulaatorisse!");
-            //Inimene.SisestaAndmed();
+            Console.WriteLine("1. Ülesanne");
+            Console.WriteLine("Tere tulemast kalorite kalkulaatorisse!");
+            Inimene.SisestaAndmed();
 
             Console.WriteLine("2. Ülesanne");
             Dictionary<string, string> maakonnad = new Dictionary<string, string>();

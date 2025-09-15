@@ -5,7 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>Põh_2.StartClass_Ülesanne</StartupObject>
+    <StartupObject>Põh_2.Iseseisev_too</StartupObject>
   </PropertyGroup>
 
 </Project>
