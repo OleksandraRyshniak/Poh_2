@@ -35,14 +35,23 @@ namespace Põhikonstruktsioonid_2
         public static void KursssEur()
         {
             Dictionary<string, Valuuta> kurss = new Dictionary<string, Valuuta>
-        {
-            { "EUR", new Valuuta("EUR", 1.0) },
-            { "USD", new Valuuta("USD", 0.93) },
-            { "GBP", new Valuuta("GBP", 1.15) },
-            { "JPY", new Valuuta("JPY", 0.006) }
-        };
+            {
+                { "EUR", new Valuuta("EUR", 1.0) },
+                { "USD", new Valuuta("USD", 0.93) },
+                { "GBP", new Valuuta("GBP", 1.15) },
+                { "JPY", new Valuuta("JPY", 0.006) }
+            };
+            double summ = 0;
             Console.WriteLine("Sisesta summ: ");
-            double summ = double.Parse(Console.ReadLine());
+            try
+            {
+               summ = double.Parse(Console.ReadLine());
+            }
+            catch 
+            {
+                Console.WriteLine("Viga! Sisesta ainult arvud!"); 
+            }
+
             Console.WriteLine("Sisesta valuutanime: ");
             string valuut = Console.ReadLine().ToUpper();
             Valuuta val = null;
