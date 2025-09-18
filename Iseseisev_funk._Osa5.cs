@@ -7,7 +7,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Põhikonstruktsioonid_2
 {
-    internal class Iseseisev_funk
+    internal class Iseseisev_funk_Osa5
     {
         public static double [] Tekstist_arvud()
         {

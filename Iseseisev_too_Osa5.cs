@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Põhikonstruktsioonid_2
 {
-    internal class Iseseisev_too
+    internal class Iseseisev_too_Osa5
     {
         static void Main(string[] args)
         {
-            double[] numbers = Iseseisev_funk.Tekstist_arvud();
+            double[] numbers = Iseseisev_funk_Osa5.Tekstist_arvud();
             double max = numbers.Max();
             double min = numbers.Min();
             double kesk = numbers.Average();
